@@ -19,7 +19,7 @@ def processing_pdfs(pdf_directory="./documents"):
             print(f"Parsing {filename} (This may take a moment)...")
             loader = UnstructuredLoader(
                 filepath, 
-                strategy="hi_res", # uses layout detection to find headers and tables
+                strategy="fast",
                 mode="elements"
             )
             raw_elements = loader.load()
@@ -69,4 +69,4 @@ if __name__ == "__main__":
         os.makedirs("./documents")
         print("Created './documents' folder. Please add PDFs and run again.")
     else:
-        ingest_pdfs_intelligently()
+        processing_pdfs()
