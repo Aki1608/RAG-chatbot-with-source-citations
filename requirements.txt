@@ -185,3 +185,5 @@ websockets==16.0
 wrapt==2.1.2
 xxhash==3.7.0
 zstandard==0.25.0
+langchain
+langchain-community
