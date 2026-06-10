@@ -2,7 +2,7 @@ import gradio as gr
 import os
 import shutil
 from retriever import get_answer_and_citations
-from data_processor import ingest_pdfs_bulletproof # Import your ingestion logic!
+from data_processor import process_pdfs
 
 # --- HELPER FUNCTIONS ---
 def process_uploaded_files(uploaded_files):
@@ -20,7 +20,7 @@ def process_uploaded_files(uploaded_files):
         
     # Trigger your Unstructured data processor!
     try:
-        ingest_pdfs_bulletproof(pdf_directory="./documents")
+        process_pdfs(pdf_directory="./documents")
         return f"Successfully processed {len(uploaded_files)} documents into the database!"
     except Exception as e:
         return f"Error processing documents: {str(e)}"
@@ -77,8 +77,6 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
             chat = gr.ChatInterface(
                 fn=chat_interface,
                 additional_inputs=[chapter_dropdown],
-                undo_btn=None,
-                clear_btn="Clear Chat"
             )
 
 if __name__ == "__main__":
